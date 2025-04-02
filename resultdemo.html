@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>School Result Search</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; margin: 20px; }
+        h1 { color: lightgreen; font-size: 36px; }
+        h3 { margin: 5px 0; }
+        input { padding: 10px; width: 200px; }
+        button { padding: 10px; cursor: pointer; }
+        table { margin-top: 20px; border-collapse: collapse; width: 80%; margin-left: auto; margin-right: auto; }
+        th, td { border: 1px solid black; padding: 10px; }
+    </style>
+</head>
+<body>
+    <h1>Home School English Medium</h1>
+    <h3>Harbhai Trivedi Marg, Bhavnagar</h3>
+    <h2>Result of Standard 8th</h2>
+    
+    <h2>Search Student Result</h2>
+    <input type="text" id="seatNo" placeholder="Enter Seat No">
+    <button onclick="searchResult()">Search</button>
+    <div id="result"></div>
+    
+    <script>
+        const students = [
+            { seatNo: "9101", name: "MANIYA KRUNALKUMAR", math: 65, science: 45, english: 74, social: 74, gujarati: 98, computer: 78, total: 434, result: "PASS", percentage: 72.33 },
+            { seatNo: "9102", name: "PATEL DIVYESHBHAI", math: 58, science: 74, english: 96, social: 74, gujarati: 75, computer: 75, total: 452, result: "PASS", percentage: 75.33 },
+            { seatNo: "9103", name: "LATHIYA MANOJBHAI", math: 36, science: 35, english: 85, social: 45, gujarati: 48, computer: 68, total: 317, result: "PASS", percentage: 52.83 },
+            { seatNo: "9104", name: "KATARA RAMESHBHAI", math: 57, science: 69, english: 74, social: 85, gujarati: 69, computer: 45, total: 399, result: "PASS", percentage: 66.50 },
+            { seatNo: "9105", name: "ANDHARIYA KEYURBHAI", math: 75, science: 85, english: 36, social: 63, gujarati: 78, computer: 63, total: 400, result: "PASS", percentage: 66.67 },
+            { seatNo: "9106", name: "PATEL BHARATBHAI", math: 65, science: 49, english: 58, social: 85, gujarati: 68, computer: 45, total: 370, result: "PASS", percentage: 61.67 },
+            { seatNo: "9107", name: "GOHIL JAYDEEPSINH", math: 67, science: 68, english: 47, social: 75, gujarati: 69, computer: 64, total: 390, result: "PASS", percentage: 65.00 },
+            { seatNo: "9108", name: "BHATT NEHABEN", math: 85, science: 75, english: 96, social: 75, gujarati: 74, computer: 74, total: 479, result: "PASS", percentage: 79.83 },
+            { seatNo: "9109", name: "TRIVEDI PRADIPBHAI", math: 78, science: 68, english: 65, social: 61, gujarati: 59, computer: 75, total: 406, result: "PASS", percentage: 67.67 },
+            { seatNo: "9110", name: "BHATT BHAVINBHAI", math: 37, science: 75, english: 78, social: 68, gujarati: 68, computer: 48, total: 374, result: "PASS", percentage: 62.33 },
+        ];
+
+        function searchResult() {
+            let seatNo = document.getElementById("seatNo").value;
+            let student = students.find(s => s.seatNo === seatNo);
+            
+            if (student) {
+                document.getElementById("result").innerHTML = `
+                    <h3>Result for Seat No: ${student.seatNo}</h3>
+                    <table>
+                        <tr><th>Name</th><td>${student.name}</td></tr>
+                        <tr><th>Math</th><td>${student.math}</td></tr>
+                        <tr><th>Science</th><td>${student.science}</td></tr>
+                        <tr><th>English</th><td>${student.english}</td></tr>
+                        <tr><th>Social</th><td>${student.social}</td></tr>
+                        <tr><th>Gujarati</th><td>${student.gujarati}</td></tr>
+                        <tr><th>Computer</th><td>${student.computer}</td></tr>
+                        <tr><th>Total</th><td>${student.total}</td></tr>
+                        <tr><th>Result</th><td>${student.result}</td></tr>
+                        <tr><th>Percentage</th><td>${student.percentage}%</td></tr>
+                    </table>
+                `;
+            } else {
+                document.getElementById("result").innerHTML = "<p style='color:red;'>Student not found!</p>";
+            }
+        }
+    </script>
+</body>
+</html>
