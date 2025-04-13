@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Student Result Portal</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f4f4;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .container {
+      max-width: 700px;
+      margin: auto;
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    input {
+      padding: 10px;
+      width: 60%;
+      margin-right: 10px;
+      font-size: 16px;
+    }
+
+    button {
+      padding: 10px 15px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .result-card {
+      margin-top: 20px;
+      text-align: left;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    table, th, td {
+      border: 1px solid #333;
+    }
+
+    th, td {
+      padding: 8px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Home School English Medium</h1>
+    <h2>Result of Year 2025-26</h2>
+
+    <input type="text" id="seatInput" placeholder="Enter Seat Number" />
+    <button onclick="searchResult()">Search</button>
+
+    <div id="resultDisplay" class="result-card hidden"></div>
+  </div>
+
+  <script>
+    const resultsData = [
+      {
+        "STD": 1,
+        "DIVISION": "A",
+        "SEAT NO.": "1A01",
+        "NAME": "MANIYA KRUNALKUMAR",
+        "GUJARATI": 58,
+        "ENGLISH": 34,
+        "MATH": 90,
+        "SCIENCE": 63,
+        "SOCIAL": 51,
+        "SANSKRIT": 40,
+        "COMPUTER": 66,
+        "TOTAL": 402,
+        "PERCENTAGE": 57.43,
+        "RESULT": "PASS"
+      },
+      {
+        "STD": 1,
+        "DIVISION": "B",
+        "SEAT NO.": "1B02",
+        "NAME": "VELANI AKASH",
+        "GUJARATI": 71,
+        "ENGLISH": 86,
+        "MATH": 45,
+        "SCIENCE": 80,
+        "SOCIAL": 52,
+        "SANSKRIT": 48,
+        "COMPUTER": 36,
+        "TOTAL": 418,
+        "PERCENTAGE": 59.71,
+        "RESULT": "PASS"
+      },
+      {
+        "STD": 2,
+        "DIVISION": "A",
+        "SEAT NO.": "2A01",
+        "NAME": "KATARA RAMESHBHAI",
+        "GUJARATI": 48,
+        "ENGLISH": 73,
+        "MATH": 52,
+        "SCIENCE": 49,
+        "SOCIAL": 43,
+        "SANSKRIT": 56,
+        "COMPUTER": 47,
+        "TOTAL": 368,
+        "PERCENTAGE": 52.57,
+        "RESULT": "PASS"
+      },
+      {
+        "STD": 2,
+        "DIVISION": "A",
+        "SEAT NO.": "2A02",
+        "NAME": "LATHIYA MANOJBHAI",
+        "GUJARATI": 55,
+        "ENGLISH": 84,
+        "MATH": 41,
+        "SCIENCE": 42,
+        "SOCIAL": 68,
+        "SANSKRIT": 74,
+        "COMPUTER": 100,
+        "TOTAL": 464,
+        "PERCENTAGE": 66.29,
+        "RESULT": "PASS"
+      },
+      {
+        "STD": 2,
+        "DIVISION": "B",
+        "SEAT NO.": "2B03",
+        "NAME": "GOHIL JAYDIPSINH",
+        "GUJARATI": 38,
+        "ENGLISH": 50,
+        "MATH": 41,
+        "SCIENCE": 64,
+        "SOCIAL": 37,
+        "SANSKRIT": 63,
+        "COMPUTER": 67,
+        "TOTAL": 360,
+        "PERCENTAGE": 51.43,
+        "RESULT": "PASS"
+      }
+    ];
+
+    function searchResult() {
+      const seat = document.getElementById('seatInput').value.trim().toUpperCase();
+      const student = resultsData.find(s => s["SEAT NO."] === seat);
+      const display = document.getElementById('resultDisplay');
+
+      if (!student) {
+        display.innerHTML = `<p>No result found for seat number <strong>${seat}</strong>.</p>`;
+        display.classList.remove("hidden");
+        return;
+      }
+
+      display.innerHTML = `
+        <h3>${student["NAME"]}</h3>
+        <p><strong>Seat No:</strong> ${student["SEAT NO."]}</p>
+        <p><strong>Class:</strong> ${student["STD"]} - ${student["DIVISION"]}</p>
+        <table>
+          <tr><th>Subject</th><th>Marks</th></tr>
+          <tr><td>Gujarati</td><td>${student["GUJARATI"]}</td></tr>
+          <tr><td>English</td><td>${student["ENGLISH"]}</td></tr>
+          <tr><td>Math</td><td>${student["MATH"]}</td></tr>
+          <tr><td>Science</td><td>${student["SCIENCE"]}</td></tr>
+          <tr><td>Social</td><td>${student["SOCIAL"]}</td></tr>
+          <tr><td>Sanskrit</td><td>${student["SANSKRIT"]}</td></tr>
+          <tr><td>Computer</td><td>${student["COMPUTER"]}</td></tr>
+          <tr><th>Total</th><th>${student["TOTAL"]}</th></tr>
+          <tr><th>Percentage</th><th>${student["PERCENTAGE"]}%</th></tr>
+          <tr><th>Result</th><th>${student["RESULT"]}</th></tr>
+        </table>
+      `;
+      display.classList.remove("hidden");
+    }
+  </script>
+</body>
+</html>
